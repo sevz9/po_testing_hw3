@@ -70,11 +70,6 @@ class TreiberStackTest2 {
         stack.push(x)
     }
 
-    @Operation
-    fun pop(): Int? {
-        return stack.pop()
-    }
-
     @Test
     fun test() {
         StressOptions()
