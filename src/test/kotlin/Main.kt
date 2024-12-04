@@ -7,6 +7,7 @@ import org.jetbrains.kotlinx.lincheck.strategy.managed.modelchecking.ModelChecki
 import org.jetbrains.kotlinx.lincheck.strategy.stress.StressCTest
 import org.jetbrains.kotlinx.lincheck.strategy.stress.StressOptions
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.BeforeAll
 import java.util.*
 import java.util.concurrent.atomic.AtomicReference
 
@@ -75,5 +76,27 @@ class TreiberStackTest2 {
         StressOptions()
             .threads(10)
             .check(TreiberStackTest2::class.java)
+    }
+}
+
+
+class TreiberStackTest3 {
+    private val stack = TreiberStack<Int>()
+
+    @Operation
+    fun push(x: Int) {
+        stack.push(x)
+    }
+
+    @Operation
+    fun pop(): Int? {
+        return stack.pop()
+    }
+
+    @Test
+    fun test() {
+        StressOptions()
+            .threads(10)
+            .check(TreiberStackSequentialTest::class.java)
     }
 }
