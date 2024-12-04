@@ -61,3 +61,24 @@ class TreiberStackSequentialTest {
             .check(TreiberStackSequentialTest::class.java)
     }
 }
+
+class TreiberStackTest2 {
+    private val stack = TreiberStack<Int>()
+
+    @Operation
+    fun push(x: Int) {
+        stack.push(x)
+    }
+
+    @Operation
+    fun pop(): Int? {
+        return stack.pop()
+    }
+
+    @Test
+    fun test() {
+        StressOptions()
+            .threads(10)
+            .check(TreiberStackTest2::class.java)
+    }
+}
